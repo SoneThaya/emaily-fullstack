@@ -8,7 +8,7 @@ require("./services/passport");
 
 const app = express();
 
-mongoose.connect(keys.mongoURI, {
+mongoose.connect(process.env.REACT_APP_MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -16,7 +16,7 @@ mongoose.connect(keys.mongoURI, {
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey],
+    keys: [process.env.REACT_APP_COOKIE_KEY],
   })
 );
 app.use(passport.initialize());
