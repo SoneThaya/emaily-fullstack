@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-require('dotenv').config()
+const cors = require("cors");
+require("dotenv").config();
 require("./models/User");
 require("./services/passport");
 
@@ -12,6 +13,8 @@ mongoose.connect(process.env.REACT_APP_MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+app.use(cors());
 
 app.use(
   cookieSession({
