@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+import SurveyForm from "./SurveyForm";
 
+// surveyNew shows surveyForm and SurveyFormReview
 class SurveyNew extends Component {
   render() {
-    return <div> SurveyNew!</div>;
+    return (
+      <div>
+        <SurveyForm />
+      </div>
+    );
   }
 }
 
