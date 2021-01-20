@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 // survey form review shows users their form inputs for review
 const SurveyFormReview = ({ onCancel }) => {
@@ -12,4 +13,10 @@ const SurveyFormReview = ({ onCancel }) => {
   );
 };
 
-export default SurveyFormReview;
+function mapStateToProps(state) {
+  return {
+    formValues: state.form.surveyForm.values,
+  };
+}
+
+export default connect(mapStateToProps)(SurveyFormReview);
