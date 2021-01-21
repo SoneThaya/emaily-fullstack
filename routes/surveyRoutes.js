@@ -49,6 +49,7 @@ module.exports = (app) => {
           {
             $inc: { [choice]: 1 },
             $set: { "recipients.$.responded": true },
+            lastResponded: new Date(),
           }
         ).exec();
       })
@@ -85,4 +86,16 @@ module.exports = (app) => {
       res.status(422).send(error);
     }
   });
+
+  app.delete(
+    "/api/surveys/delete/:surveyId",
+    requireLogin,
+    async (req, res) => {
+      await Survey.deleteOne({ _id: req.params.surveyId });
+      const surveys = await Survey.find({ _user: req.user.id }).select({
+        recipients: false,
+      });
+      res.send(surveys);
+    }
+  );
 };
